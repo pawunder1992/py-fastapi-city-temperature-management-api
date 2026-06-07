@@ -4,18 +4,18 @@ from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import joinedload, selectinload
 from city import models, schemas
-from dotenv import load_dotenv
+
 
 from dependencies import get_city_temperature
-
-load_dotenv()
 
 
 async def get_temperature_by_city_id(
     db: AsyncSession, city_id: int
 ) -> models.DBTemperature | None:
     return await db.scalar(
-        select(models.DBTemperature).where(models.DBCity.id == city_id)
+        select(models.DBTemperature).where(
+            models.DBTemperature.city_id == city_id
+        )
     )
 
 

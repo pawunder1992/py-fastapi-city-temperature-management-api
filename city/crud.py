@@ -40,7 +40,7 @@ async def create_city(
     return db_city
 
 
-async def delete_city(db: AsyncSession, city: schemas.City) -> None:
+async def delete_city(db: AsyncSession, city: models.DBCity) -> None:
     db_city = await get_city_by_id(db, city.id)
     if db_city:
         await db.delete(db_city)
