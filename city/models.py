@@ -2,7 +2,6 @@ from sqlalchemy import String
 from sqlalchemy.orm import relationship, Mapped, mapped_column
 
 from databese import Base
-from temperature.models import DBTemperature
 
 
 class DBCity(Base):
@@ -13,5 +12,6 @@ class DBCity(Base):
     additional_info: Mapped[str]
 
     temperatures: Mapped[list["DBTemperature"]] = relationship(
+        "DBTemperature",
         back_populates="city"
     )
